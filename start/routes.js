@@ -10,6 +10,7 @@ Route.post('reset', 'ResetPasswordController.store')
 
 Route.group(() => {
     Route.resource('games', 'GameController').apiOnly()
+    Route.resource('bets', 'BetController').apiOnly()
 }).middleware(['auth'])
 
 
