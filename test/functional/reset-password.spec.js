@@ -15,8 +15,7 @@ test('it cannot reset password after 2 days of forgot password request', async (
   await user.tokens().save(userToken)
 
   const dateSubtract = moment().subtract('2', 'days').format('YYYY-MM-DD HH:mm:ss');
-  console.log(dateSubtract)
-
+  
   await Database.table('tokens')
     .where('token', userToken.token)
     .update('created_at', dateSubtract)
