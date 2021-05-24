@@ -10,8 +10,9 @@ class GameController {
   }
 
   async store ({ request }) {
-    const data = request.only(['type', 'description', 'range', 'price', 'max-number', 'color', 'min-cart-value'])
-    const game = await Game.create(data)
+    const data = request.only(['types'])
+    console.log(data)
+    const game = await Game.createMany(data.types)
     return game
   }
 
