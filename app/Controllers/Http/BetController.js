@@ -13,7 +13,7 @@ class BetController {
 
   async store ({ request, auth }) {
     const data = request.only(['game_id', 'numbers', 'price'])
-    const bet = await Bet.create({... data, user_id: auth.user.id})
+    const bet = await Bet.create({... data , numbers:`{${data.numbers}}` ,user_id: auth.user.id})
     return bet
   }
 

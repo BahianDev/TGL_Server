@@ -12,12 +12,13 @@ trait('DatabaseTransactions')
 test('it should send an email with reset password instructions', async ({ assert, client }) => {
   Mail.fake()
   const email = 'wesley@email.com';
+  const redirect_url = 'http://meusistema.com';
 
   const user = await Factory.model('App/Models/User').create({ email });
 
   const response = await client
     .post('passwords')
-    .send({ email })
+    .send({ email, redirect_url })
     .end();
 
   const token = await user.tokens().first();
@@ -35,7 +36,8 @@ test('it should send an email with reset password instructions', async ({ assert
 test('return error if user does not exist', async ({ assert, client }) => {
 
   const response = await client.post('passwords').send({
-    email: 'notexist@email.com'
+    email: 'notexist@email.com',
+    redirect_url: 'http://meusistema.com'
   }).end()
 
   response.assertStatus(404)
