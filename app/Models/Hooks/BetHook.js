@@ -8,8 +8,8 @@ BetHook.sendNewBetEmail = async betInstance => {
     const { numbers, price } = await betInstance
     
     await Mail.send(
-        ['emails.new_bet'],
-        { username, type, numbers, price },
+        ['emails.index'],
+        { view: 'emails.new_bet', username, type, numbers, price },
         message => {
             message
                 .to(email)

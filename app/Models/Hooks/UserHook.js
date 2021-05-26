@@ -6,8 +6,8 @@ UserHook.sendNewUserEmail = async userInstance => {
     const { email, username } = await userInstance
     
     await Mail.send(
-        ['emails.new_user'],
-        { email, username },
+        ['emails.index'],
+        {  view: 'emails/new_user', email, username },
         message => {
             message
                 .to(email)

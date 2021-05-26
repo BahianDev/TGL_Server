@@ -8,14 +8,14 @@ class ForgotPasswordController {
             const email = request.input('email')
             const user = await User.findByOrFail('email', email)
             const token = crypto.randomBytes(10).toString('hex')
-
             await user.tokens().create({
                 token,      
                 type: 'forgotPassword'
             })
             await Mail.send(
-                ['emails.forgot_password'],
-                { email, token: token, link: `${request.input('redirect_url')}?token=${token}`},
+                ['emails.index'],
+                { view: 'emails.forgot_password', email, token: token, link: `${request.input('redirect_url')}?token=${token}`},
+
                 message => {
                     message
                         .to(user.email)
