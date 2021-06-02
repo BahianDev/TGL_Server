@@ -14,7 +14,7 @@ class ForgotPasswordController {
             })
             await Mail.send(
                 ['emails.index'],
-                { view: 'emails.forgot_password', email, token: token, link: `${request.input('redirect_url')}?token=${token}`},
+                { view: 'emails.forgot_password', email, token: token, link: `${request.input('redirect_url')}/${token}`},
 
                 message => {
                     message

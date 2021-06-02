@@ -16,7 +16,7 @@ class BetController {
     data.bets.forEach(v => {
       v.user_id = auth.user.id
     })
-    const bet = await Bet.createMany(data.bets, )
+    const bet = await Bet.createMany(data.bets)
     return bet
   }
 

@@ -1,6 +1,7 @@
 'use strict'
 
 const User = use('App/Models/User')
+const Token = use('App/Models/Token')
 
 class UserController {
     async index () {
@@ -14,8 +15,8 @@ class UserController {
         return user
     }
 
-    async show ({ params }) {
-        const user = await User.findOrFail(params.id)
+    async show ({ auth}) {
+        const user = auth.user
         return user
     }
 
