@@ -8,7 +8,6 @@ class Bet extends Model {
         super.boot()
         this.addHook('afterCreate', 'BetHook.sendNewBetEmail')
     }
-
     games () {
         return this.belongsTo('App/Models/Game')
     }

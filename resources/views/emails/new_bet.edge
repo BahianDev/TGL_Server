@@ -1,2 +1,6 @@
 <strong>{{ username }} sua aposta foi realizada</strong>
-<p>Uma aposta no jogo {{ type }} com os números [{{ numbers }}] com preço R${{ price }} foi realizada</p>
+@each(bet in bets)
+  <p>{{bet.type}}</p>
+  <p>{{bet.numbers}}</p>
+  <p>{{bet.price}}</p>
+@endeach
