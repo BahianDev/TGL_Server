@@ -1,7 +1,6 @@
 'use strict'
 
 const User = use('App/Models/User')
-const Token = use('App/Models/Token')
 
 class UserController {
     async index () {
@@ -15,14 +14,14 @@ class UserController {
         return user
     }
 
-    async show ({ auth}) {
+    async show ({ auth }) {
         const user = auth.user
         return user
     }
 
-    async update ({ params, request }) {
-        const user = await User.findOrFail(params.id)
-        const data = request.only(['username', 'email'])
+    async update ({ request, auth }) {
+        const user = auth.user
+        const data = request.only(['username', 'email', 'password'])
         user.merge(data)
         await user.save()
         return user

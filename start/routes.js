@@ -6,7 +6,7 @@ const Route = use('Route')
 
 Route.resource('users', 'UserController')
         .apiOnly()
-        .except(['show', 'index'])
+        .except(['show', 'index', 'update'])
         .validator(new Map([[['users.store'], ['User']]]))
 
 Route.post('sessions', 'SessionController.store').validator('Session')
@@ -20,6 +20,7 @@ Route.group(() => {
         .validator(new Map([[['games.store'], ['Game']]]))
 
     Route.get('users', 'UserController.show')
+    Route.put('users', 'UserController.update')
 
     Route.resource('bets', 'BetController')
         .apiOnly()
